@@ -6,6 +6,7 @@ day = datetime.weekday(datetime.today())
 # Set the time
 time_now = datetime.today().time()
 
+# Set the normal operation schedule
 normal_schedule = {
     0: {
         "Day": "Monday",
@@ -75,23 +76,26 @@ normal_schedule = {
     },
 }
 
-print("Today is {}\n".format(normal_schedule[day]["Day"]))
 
-start_for_the_day = normal_schedule[day]["Start"]
-change_list = normal_schedule[day]["Changes"]
+def get_direction():
+    print("Today is {}\n".format(normal_schedule[day]["Day"]))
 
-print("It is currently {}\n".format(time_now))
+    start_for_the_day = normal_schedule[day]["Start"]
+    change_list = normal_schedule[day]["Changes"]
 
-option_in_force = ""
+    print("It is currently {}\n".format(time_now))
 
-for k, v in sorted(change_list.iteritems()):
-    if time_now > k:
-        option_in_force = v
-    else:
-        if option_in_force == "":
-            option_in_force = start_for_the_day
+    option_in_force = ""
 
-print("Current Status is: {}\n".format(option_in_force))
+    for k, v in sorted(change_list.iteritems()):
+        if time_now > k:
+            option_in_force = v
+        else:
+            if option_in_force == "":
+                option_in_force = start_for_the_day
+
+    print("Current Status is: {}\n".format(option_in_force))
+    return "Current Status is: {}\n".format(option_in_force)
 
 
 
